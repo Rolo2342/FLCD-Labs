@@ -1,0 +1,38 @@
+program := "START" "{" "VARIABLES" decllist ";" cmpdstmt "." "}"
+
+decllist := declaration | declaration ";" decllist
+
+declaration := IDENTIFIER ":" type
+
+type1 := "signedint" | "int" | "boolean" | "string" | "char" | "pair"
+
+arraydecl := "ARRAY" "[" int "]" "OF" type1
+
+type  := type1|arraydecl
+
+cmpdstmt := "BEGIN" stmtlist "END"
+
+stmtlist := stmt | stmt ";" stmtlist
+
+stmt := simplstmt | structstmt
+
+simplstmt := assignstmt | iostmt
+
+assignstmt := IDENTIFIER ":=" expression
+
+expression := expression "+" term | expression "-" term | expression "*" term | expression "/" term | term
+
+factor := "(" expression ")" | IDENTIFIER | signedint
+
+iostmt := "READ" | "WRITE" "(" IDENTIFIER ")"
+
+structstmt := cmpdstmt | ifstmt | whilestmt
+
+ifstmt := "IF" condition "THEN" stmt ["ELSE" stmt] "FI"
+
+whilestmt := "WHILE" condition "DO" stmt "DONE"
+
+condition := expression RELATION expression
+
+RELATION := "<" | "<=" | "==" | "!=" | ">=" | ">"
+
