@@ -1,0 +1,22 @@
+START {
+VARIABLES
+    count:int;
+    i:=int;
+    v:ARRAY[10] OF int;
+    sum:int;
+BEGIN
+READ(count);
+i:=0;
+WHILE i < count DO
+    read(v[i]);
+    i:=i+1;
+DONE
+sum:=0;
+i:=0;
+WHILE i < count DO
+    sum:=sum+v[i];
+DONE
+WRITE(sum);
+END
+.
+}
