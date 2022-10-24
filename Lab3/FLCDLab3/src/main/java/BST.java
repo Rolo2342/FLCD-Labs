@@ -17,7 +17,7 @@ public class BST {
      *
      * @param value The string value of the new element
      */
-    public void addElement(String value){
+    public void addElement(String value) throws Exception {
         if (this.root == null)
             this.root = new Element(value);
         else{
@@ -40,7 +40,7 @@ public class BST {
                         currentElement = currentElement.right;
                 }
                 else{
-                    break;
+                    throw new Exception("Element already exists!");
                 }
             }
         }

@@ -17,4 +17,9 @@ public class SymbolTable {
     public void setConstants(BST constants) {
         this.constants = constants;
     }
+
+    public SymbolTable() {
+        constants = new BST();
+        identifiers = new BST();
+    }
 }
