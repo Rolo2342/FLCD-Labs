@@ -1,3 +1,8 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Stack;
+
 public class BST {
 
     public Element root;
@@ -131,20 +136,67 @@ public class BST {
     /**
      * Recursive traversal of the tree
      */
-    void inorder() {
-        inorder_Recursive(this.root);
+    void inorder() throws IOException {
+        StringBuilder string = new StringBuilder();
+        Stack<Element> s = new Stack<Element>();
+        Element currentNode=this.getRoot();
+
+        while(!s.empty() || currentNode!=null){
+
+            if(currentNode!=null)
+            {
+                s.push(currentNode);
+                currentNode=currentNode.left;
+            }
+            else
+            {
+                Element n=s.pop();
+                string.append(n.getValue()).append(" ");
+                currentNode=n.right;
+            }
+        }
+        BufferedWriter bw = new BufferedWriter(new FileWriter("st.out"));
+        bw.write(string.toString());
+        bw.close();
     }
 
     /**
      *
      * @param root
      */
-    void inorder_Recursive(Element root) {
+    void inorder_Recursive(Element root) throws IOException {
+        BufferedWriter writeSt = new BufferedWriter(new FileWriter("st.out", true));
         if (root != null) {
             inorder_Recursive(root.left);
-            System.out.print(root.getValue() + " ");
+            writeSt.write(root.getValue() + " ");
             inorder_Recursive(root.right);
         }
+        writeSt.close();
+    }
+
+    public Stack<String> getInorder(){
+        if(root == null)
+            return null;
+
+        Stack<Element> s = new Stack<Element>();
+        Stack<String> s1 = new Stack<String>();
+        Element currentNode=this.getRoot();
+
+        while(!s.empty() || currentNode!=null){
+
+            if(currentNode!=null)
+            {
+                s.push(currentNode);
+                s1.push(currentNode.getValue());
+                currentNode=currentNode.left;
+            }
+            else
+            {
+                Element n=s.pop();
+                currentNode=n.right;
+            }
+        }
+        return s1;
     }
 
 

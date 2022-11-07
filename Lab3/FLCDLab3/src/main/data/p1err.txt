@@ -1,0 +1,25 @@
+START {
+VARIABLES
+    a:int;
+    b:int;
+    c:int;
+BEGIN
+READ(a);
+READ(b);
+READ(c);
+IF 1a >= b THEN
+    IF a>=c THEN
+        WRITE(a);
+    ELSE
+        WRITE(c);
+    FI
+ELSE
+    IF b>=c THEN
+        WRITE(b);
+    ELSE
+        WRITE(c);
+    FI
+FI
+END
+.
+}
