@@ -1,0 +1,41 @@
+1. addElement(String)
+Desc: Adds an element to the search tree by comparing it to all the nodes
+Input:
+    String: The string value of the new element
+Output:  N/A
+
+2. search(String)
+Desc: Searches for a given element by comparing it to every node and moving acordingly
+Input:
+    String: The string value of the searched element
+Output: The element that needs to be found
+
+
+3. deleteKey(String value)
+Desc: Starts the recursive method for deleting an element
+Input:
+    String The string value of the element that needs to be deleted
+Output: N/A
+
+4. deleteRecursive(Element, String)
+Desc: Traverses the tree recursivelt until it finds the element that needs to be deleted
+Input:
+    Element The current element of the iteration
+    String The String value of the element to be deleted
+Output: Element The element that replaces the one that was deleted
+
+5. minValue(Element)
+Desc: Finds the maximum value of the elements that are smaller then the element to be deleted
+Input: 
+    Element: The start point of the search
+Output: String the value of the element that was found
+
+6. inorder()
+Desc: Recursive traversal of the tree
+Input: N/A
+Output: N/A
+
+7. inorder_Recursive(Element)
+Desc:
+Input:
+Output:

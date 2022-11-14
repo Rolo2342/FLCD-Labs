@@ -1,0 +1,28 @@
+START {
+VARIABLES
+    a : int ;
+    i : int ;
+    ok : boolean ;
+    prime : string ;
+    notprime : string ;
+BEGIN
+READ ( a )
+i := 2 ;
+ok := false ;
+prime := "prime" ;
+notprime := "notprime" ;
+WHILE i <= a / 2 DO
+    IF a % i == 0 THEN
+        ok := true ;
+    FI
+    i := i + 1 ;
+DONE
+
+IF ok == true THEN
+    WRITE ( prime ) ;
+ELSE
+    WRITE ( notprime ) ;
+FI
+
+END
+}
