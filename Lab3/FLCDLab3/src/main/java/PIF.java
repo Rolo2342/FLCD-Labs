@@ -1,21 +1,20 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class PIF {
-    public Map<String, Integer> data;
+    public ArrayList<Pair> data;
 
     public PIF(){
-        this.data = new HashMap<>();
+        this.data = new ArrayList<>();
     }
 
     public void add(String key, Integer pos){
-        data.put(key,pos);
+        data.add(new Pair(key,pos));
     }
 
     public String toString(){
         StringBuilder value = new StringBuilder();
-        for(Map.Entry<String,Integer> val : data.entrySet()){
-            value.append(val.getKey()+ " " + val.getValue()+"\n");
+        for(Pair val : data){
+            value.append(val.getValue()+ " " + val.getIndex()+"\n");
         }
         return value.toString();
     }

@@ -75,10 +75,10 @@ public class Scanner {
                 .find();
     }
 
-    public void setPIF(BST symbolTable, PIF programInternalForm){
+    public void setVariablesPIF(BST symbolTable, ArrayList<String> pif){
         Integer position = 0;
         for (String value:symbolTable.getInorder()) {
-            programInternalForm.add(value, position);
+            pif.add(value);
             position++;
         }
     }
@@ -92,7 +92,7 @@ public class Scanner {
             String line;
             ArrayList<String> tokens = new ArrayList<>();
             while((line = br.readLine())!= null){
-                tokens.addAll(List.of(line.split("(\"[^a-zA-Z0-9]\")|([^a-zA-Z0-9])")));
+                tokens.addAll(List.of(line.split(" ")));
             }
             br.close();
             tokens.removeAll(Collections.singleton(""));
@@ -104,8 +104,9 @@ public class Scanner {
                     programInternalForm.add(token, 0);
                 else if(isNrConst(token) || isIdentifierConst(token)){
                     try {
-                        symbolTable.addElement(token);
-                        programInternalForm.add(token, position);
+                        if(symbolTable.search(token) == null)
+                            symbolTable.addElement(token);
+                        programInternalForm.add(token, -1);
                         position++;
                     }
                     catch (Exception e){
@@ -122,8 +123,13 @@ public class Scanner {
             throw new RuntimeException(e);
         }
 
-        setPIF(symbolTable, programInternalForm); //inorder and number
-
+        ArrayList<String> pif = new ArrayList<>();
+        setVariablesPIF(symbolTable, pif); //inorder and number
+        for(Pair pair : programInternalForm.data){
+            if(!isReservedToken(pair.getValue()) && isIdentifierConst(pair.getValue())){
+                pair.setIndex(pif.indexOf(pair.getValue()));
+            }
+        }
         BufferedWriter writePif = new BufferedWriter(new FileWriter("pif.out"));
         writePif.write(programInternalForm.toString());
 
