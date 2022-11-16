@@ -1,0 +1,4 @@
+The finite automata is a program that recognizes patterns
+The source code works as following:
+After reading the FA.in input file, the program prints a menu that allows the user to select what operation he wants to make (printing or checking if an alphabet is valid)
+If the user wants to check if the alphabet is valid, the program goes through each letter and, using the initial state, follows the transitions rules given in the input file in  order to pass through states. Upon reaching the final letter and figuring out the final state obtained by following the alphabet, the program checks if the state is one of the final_possible_states given in the FA.in file and tells the user if the alphabet is valid or not.
